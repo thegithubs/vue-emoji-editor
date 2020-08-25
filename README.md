@@ -2,7 +2,7 @@
 
 ![效果图](https://github.com/thegithubs/vue-emoji-editor/blob/master/public/intro.png?raw=true)
 
-### [点击查看效果图](https://gzc-download.weiyun.com/ftn_handler/c88959711d9c6f17da054add204dd4caa45d24ac42430584ac4a886d664476874f6e30fda80e7f74e4bc541878ae0c9f9d4b0a9a27759c97e6dc753a1bf4cfc5/intro.png?fname=intro.png&from=30013&version=3.3.3.3)
+### [点击查看效果图](https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f5b789ab2a8ab02bbbf5125b999320d48c65f054161320b084f7f9df9b5832e34dcd0030fadd590e2d4c85b91694bc00?pictype=scale&from=30013&version=3.3.3.3&uin=512111395&fname=intro.png&size=750) 
 
 ### 说明
 ```
