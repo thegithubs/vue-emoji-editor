@@ -18,6 +18,10 @@ npm i vue2-emoji-editor
 
 import EmojiComponent from 'vue2-emoji-editor'
 
+<emoji-component
+  ref="emoji"
+  @change="change"
+/>
 ```
 
 ### Attributes
