@@ -1,6 +1,6 @@
 # vue-emoji-editor
 
-![Image text](https://github.com/thegithubs/vue-emoji-editor/blob/master/public/intro.png?raw=true)
+![效果图](https://github.com/thegithubs/vue-emoji-editor/blob/master/public/intro.png)
 
 ### 说明
 ```
