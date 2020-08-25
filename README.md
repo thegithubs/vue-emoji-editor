@@ -2,6 +2,8 @@
 
 ![效果图](https://github.com/thegithubs/vue-emoji-editor/blob/master/public/intro.png?raw=true)
 
+### [点击查看效果图](https://imglf4.nosdn0.126.net/img/aG1rTUpaY1BGVUcwVFQ3NSttVlJ2azZWMnBUcU9leUdIK1oxd05YMDJqRXB4UDF2aTl3aFhRPT0.png?imageView&thumbnail=1000x0&type=png)
+
 ### 说明
 ```
 本编辑器是基于HTML5的contenteditable和VUE2.x实现，可插入emoji、图片等
