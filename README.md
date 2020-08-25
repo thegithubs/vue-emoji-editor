@@ -20,7 +20,7 @@ emoji列表和图片上传逻辑请自行实现，本编辑器只处理传进来
 
 import EmojiComponent from './components/EmojiComponent.vue'
 
-具体见app.vue
+demo页面见src/app.vue
 ```
 
 ### Attributes
