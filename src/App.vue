@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import EmojiComponent from './components/EmojiComponent.vue'
+import EmojiComponent from 'vue2-emoji-editor'
 
 export default {
   name: 'app',
