@@ -12,15 +12,12 @@ emoji列表和图片上传逻辑请自行实现，本编辑器只处理传进来
 ```
 
 ### 使用方法
+## NPM
 ```
-<emoji-component
-  ref="emoji"
-  @change="change"
-/>
+npm i vue2-emoji-editor
 
-import EmojiComponent from './components/EmojiComponent.vue'
+import EmojiComponent from 'vue2-emoji-editor'
 
-demo页面见src/app.vue
 ```
 
 ### Attributes
