@@ -63,7 +63,7 @@ export default {
 	methods: {
 		lineFeed(h){
 			//输出换行符
-			return h.replace(/[\r\n]/g, '<br>')
+			return h.replace(/[\r\n]/g, '<br>').replace(/on.+=".*"/i, '')
 		},
 		init(){
 			//初始化
