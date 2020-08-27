@@ -2,8 +2,7 @@
   <div id="app">
     <emoji-component
 			ref="emoji"
-			:autosize="{minHeight: 100, maxHeight: 200}"
-			:autofocus="false"
+			editorStyle="min-height: 100px; max-height: 200px;"
 			:max="100"
 			@change="change"
 		/>
