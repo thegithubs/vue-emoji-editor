@@ -8,9 +8,11 @@
 本输入组件是基于HTML5的contenteditable和vue实现，可插入emoji、图片等
 emoji列表和图片上传逻辑请自行实现，本组件只处理传进来的文字图片显示
 添加emoji或上传后执行this.$refs.emoji.addEmoji(src) 即可在组件内显示
-This component is based on HTML5 contenteditable and vue, which can insert emoji, pictures, etc
+This component is based on HTML5 contenteditable and vue, 
+which can insert emoji, pictures, etc
 Please implement the emoji list and picture upload logic by yourself
-Use this.$refs. Emojis. AddEmoji (SRC) to display in the component after adding emoji or uploading
+Use this.$refs. Emojis. AddEmoji (SRC) to display in the component 
+after adding emoji or uploading
 ```
 
 ## 安装 Install
@@ -38,13 +40,11 @@ clearable      是否可清空                             boolean  true
 placeholder    占位符                                string    请输入...
 value          绑定值                                string    -
 autofocus     是否自动聚焦                           boolean   true
-autosize      输入框高度 传入对象, 单位为px           object    -
-              如 {minHeight: 50, maxHeight: 100}
+editorStyle   输入框样式，如height:100px             string    -
 border        默认边框                               string    1px solid #ddd
 borderActive  激活时边框                             string    1px solid #409eff
 radius        圆角大小, 单位为px                     string    5px
-img          输入框图片大小 传入对象, 单位为px        object    {minWidth: 24, maxWidth: 48}
-             如 {minWidth: 24, maxWidth: 48}
+imgStyle      输入框图片样式，如width: 52px          string    -
 ```
 
 ## 事件 Events
@@ -63,7 +63,7 @@ getContent  获取内容         -
 
 ## License
 ```
-[MIT](http://opensource.org/licenses/MIT).
+[MIT](http://opensource.org/licenses/MIT)
 Copyright (c) 2020-present, thegithubs
 ```
 

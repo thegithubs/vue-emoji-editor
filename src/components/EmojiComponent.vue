@@ -6,7 +6,7 @@
 					id="contenteditable"
 					ref="contenteditable"
 					:class="{wordLimit: max === 0 || !showWordLimit}"
-					:style="{minHeight: `${autosize.minHeight}px`, maxHeight: `${autosize.maxHeight}px`, border: isFocus ? borderActive : border, borderRadius: radius}"
+					:style="`${editorStyle}; border: ${isFocus ? borderActive : border}`"
 					:contenteditable="canEdit"
 					:placeholder="placeholder"
 					@compositionstart="typing = true"
@@ -59,14 +59,9 @@ export default {
     	type: Boolean,
     	default: true
     },
-		autosize: { //内容高度 如{maxHeight: 100, minHeight: 50} 单位px
-			type: Object,
-			default: () => {
-				return {
-					minHeight: '',
-					maxHeight: ''
-				}
-			}
+		editorStyle: { //输入框样式
+			type: String,
+			default: ''
 		},
 		border: { //默认边框
 			type: String,
@@ -76,18 +71,9 @@ export default {
 			type: String,
 			default: '1px solid #409eff'
 		},
-		radius: { //圆角值
+		imgStyle: { //输入框图片样式
 			type: String,
-			default: '5px'
-		},
-		img: { //图片尺寸
-			type: Object,
-			default: () => {
-				return {
-					minWidth: '24',
-					maxWidth: '48'
-				}
-			}
+			default: ''
 		}
   },
 	data(){
@@ -97,7 +83,6 @@ export default {
 			range: null,
 			total: 0,
 			typing: false, //输入状态
-			exportContent: '',
 			canEdit: this.disabled ? false : 'plaintext-only',
 			isFocus: false
 		}
@@ -140,7 +125,6 @@ export default {
 		clear(){
 			//清空内容 重置
 			this.content = ''
-			this.exportContent = ''
 			this.total = 0
 			this.startOffset = 0
 			document.querySelector('#contenteditable').innerHTML = ''
@@ -216,7 +200,7 @@ export default {
 				selection = getSelection(),
 				emoji = document.createElement("img")
 			emoji.src = src;
-			emoji.setAttribute('style', `max-width: ${this.img.maxWidth}px; min-width: ${this.img.minWidth}px;`)
+			emoji.setAttribute('style', this.imgStyle)
 			if (!range || !selection.anchorNode) {
 				range = document.createRange()
 				range.selectNodeContents($content)
@@ -273,8 +257,9 @@ export default {
 					cursor: text;
 					transition: all ease .4s;
 					border: 1px solid #ddd;
+					border-radius: 5px;
 					&:focus {
-						border: 1px solid #ff3600;
+						border: 1px solid #409eff;
 					}
 					&[contenteditable = "false"] {
 						cursor: not-allowed;
@@ -282,9 +267,6 @@ export default {
 					&:empty::before {
 						color: #ddd;
 						content: attr(placeholder);
-					}
-					>>> img {
-						vertical-align: bottom;
 					}
 					&.wordLimit {
 						padding-bottom: 10px;
@@ -307,12 +289,6 @@ export default {
 					cursor: pointer;
 					padding: 0;
 					pointer-events: all;
-				}
-			}
-			.exportContent {
-				margin: 30px 0;
-				img {
-					vertical-align: bottom;
 				}
 			}
 			.button {
