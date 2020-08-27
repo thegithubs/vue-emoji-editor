@@ -2,7 +2,22 @@
   <div class="emoji">
   	<div class="teatarea">
   		<div class="field">
-  			<div id="contenteditable" :class="{wordLimit: max === 0 || !showWordLimit}" :contenteditable="canEdit" @compositionstart="typing = true" @compositionend="typing = false" :placeholder="placeholder" @keyup="focus" @keydown="keydown" @input="input" @click="focus"></div>
+  			<div
+					id="contenteditable"
+					ref="contenteditable"
+					:class="{wordLimit: max === 0 || !showWordLimit}"
+					:style="{minHeight: `${autosize.minHeight}px`, maxHeight: `${autosize.maxHeight}px`, border: isFocus ? borderActive : border, borderRadius: radius}"
+					:contenteditable="canEdit"
+					:placeholder="placeholder"
+					@compositionstart="typing = true"
+					@compositionend="typing = false"
+					@keyup="focus"
+					@keydown="keydown"
+					@input="input"
+					@click="focus"
+					@focus="isFocus = true"
+					@blur="isFocus = false"
+				></div>
   			<div class="total" v-if="showWordLimit && max !== 0">{{total}} / {{max}}</div>
   			<span class="clear" @click="clear" v-if="!disabled && clearable && content">
   				<svg class="icon" style="width: 1.4em; height: 1.4em; vertical-align: middle; fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="328"><path d="M878.08 731.274667a32 32 0 0 1-54.88-32.938667A360.789333 360.789333 0 0 0 874.666667 512c0-200.298667-162.368-362.666667-362.666667-362.666667S149.333333 311.701333 149.333333 512s162.368 362.666667 362.666667 362.666667a360.789333 360.789333 0 0 0 186.314667-51.445334 32 32 0 0 1 32.928 54.88A424.778667 424.778667 0 0 1 512 938.666667C276.362667 938.666667 85.333333 747.637333 85.333333 512S276.362667 85.333333 512 85.333333s426.666667 191.029333 426.666667 426.666667c0 78.293333-21.152 153.568-60.586667 219.274667zM555.232 512l86.474667 86.474667a30.570667 30.570667 0 1 1-43.232 43.232L512 555.232l-86.474667 86.474667a30.570667 30.570667 0 1 1-43.232-43.232L468.768 512l-86.474667-86.474667a30.570667 30.570667 0 1 1 43.232-43.232L512 468.768l86.474667-86.474667a30.570667 30.570667 0 1 1 43.232 43.232L555.232 512z" p-id="329"></path></svg>
@@ -34,12 +49,46 @@ export default {
     },
     placeholder: { //占位符
     	type: String,
-    	default: '请输入内容'
+    	default: '请输入...'
     },
     value: { //绑定值
     	type: String,
     	default: ''
-    }
+    },
+    autofocus: { //是否自动聚焦
+    	type: Boolean,
+    	default: true
+    },
+		autosize: { //内容高度 如{maxHeight: 100, minHeight: 50} 单位px
+			type: Object,
+			default: () => {
+				return {
+					minHeight: '',
+					maxHeight: ''
+				}
+			}
+		},
+		border: { //默认边框
+			type: String,
+			default: '1px solid #ddd'
+		},
+		borderActive: { //激活时边框
+			type: String,
+			default: '1px solid #409eff'
+		},
+		radius: { //圆角值
+			type: String,
+			default: '5px'
+		},
+		img: { //图片尺寸
+			type: Object,
+			default: () => {
+				return {
+					minWidth: '24',
+					maxWidth: '48'
+				}
+			}
+		}
   },
 	data(){
 		return {
@@ -50,6 +99,7 @@ export default {
 			typing: false, //输入状态
 			exportContent: '',
 			canEdit: this.disabled ? false : 'plaintext-only',
+			isFocus: false
 		}
 	},
 	mounted(){
@@ -57,12 +107,12 @@ export default {
 	},
 	watch: {
 		content(){
-			this.$emit('change', this.getContent())
+			this.$emit('change', this.getContent(), this.total)
 		}
 	},
 	methods: {
 		lineFeed(h){
-			//输出换行符
+			//输出换行符，去掉js事件 如onclick等
 			return h.replace(/[\r\n]/g, '<br>').replace(/on.+=".*"/i, '')
 		},
 		init(){
@@ -72,8 +122,9 @@ export default {
 				selection = getSelection()
 			this.content = this.value
 			$content.innerHTML = this.content
-			$content.focus()
+			if (this.autofocus) $content.focus()
 			if (!this.disabled) {
+				if (!this.autofocus) return
 				range = selection.getRangeAt(0)
 				range.selectNodeContents($content)
 				range.collapse(false)
@@ -165,6 +216,7 @@ export default {
 				selection = getSelection(),
 				emoji = document.createElement("img")
 			emoji.src = src;
+			emoji.setAttribute('style', `max-width: ${this.img.maxWidth}px; min-width: ${this.img.minWidth}px;`)
 			if (!range || !selection.anchorNode) {
 				range = document.createRange()
 				range.selectNodeContents($content)
@@ -213,21 +265,25 @@ export default {
 					padding: 10px 12px 32px;
 					line-height: 1.8;
 					max-height: 100px;
-					border: 1px solid #ddd;
-					border-radius: 5px;
 					font-size: 14px;
 					text-align: left;
 					box-sizing: border-box;
 					outline: none;
 					overflow-y: auto;
+					cursor: text;
+					transition: all ease .4s;
+					border: 1px solid #ddd;
 					&:focus {
-						border: 1px solid #409eff;
+						border: 1px solid #ff3600;
+					}
+					&[contenteditable = "false"] {
+						cursor: not-allowed;
 					}
 					&:empty::before {
 						color: #ddd;
 						content: attr(placeholder);
 					}
-					img {
+					>>> img {
 						vertical-align: bottom;
 					}
 					&.wordLimit {

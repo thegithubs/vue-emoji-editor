@@ -1,20 +1,25 @@
 # vue-emoji-editor
 
-![Image text](https://github.com/thegithubs/vue-emoji-editor/blob/master/public/intro.png?raw=true)
-[点击查看效果图](https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f5b789ab2a8ab02bbbf5125b999320d48c65f054161320b084f7f9df9b5832e34dcd0030fadd590e2d4c85b91694bc00?pictype=scale&from=30013&version=3.3.3.3&uin=512111395&fname=intro.png&size=750)
+![Image text](https://img-cdn-aliyun.dcloud.net.cn/stream/plugin_screens/c7d536b0-e747-11ea-b015-5794bd84f21f_0.png?v=1598418218)
+[点击查看效果图Effect Picture](https://img-cdn-aliyun.dcloud.net.cn/stream/plugin_screens/c7d536b0-e747-11ea-b015-5794bd84f21f_0.png?v=1598418218)
 
-### 说明
+## 说明 Introduction
 ```
-本编辑器是基于HTML5的contenteditable和VUE2.x实现，可插入emoji、图片等
-emoji列表和图片上传逻辑请自行实现，本编辑器只处理传进来的文字图片显示
-添加emoji或上传后执行this.$refs.emoji.addEmoji(src) 即可在编辑器内显示出来
+本输入组件是基于HTML5的contenteditable和vue实现，可插入emoji、图片等
+emoji列表和图片上传逻辑请自行实现，本组件只处理传进来的文字图片显示
+添加emoji或上传后执行this.$refs.emoji.addEmoji(src) 即可在组件内显示
+This component is based on HTML5 contenteditable and vue, which can insert emoji, pictures, etc
+Please implement the emoji list and picture upload logic by yourself
+Use this.$refs. Emojis. AddEmoji (SRC) to display in the component after adding emoji or uploading
 ```
 
-### 使用方法
-## NPM
+## 安装 Install
 ```
 npm i vue2-emoji-editor
+```
 
+## 使用 Quickstart
+```
 import EmojiComponent from 'vue2-emoji-editor'
 
 <emoji-component
@@ -23,30 +28,42 @@ import EmojiComponent from 'vue2-emoji-editor'
 />
 ```
 
-### Attributes
+## 属性 Attributes
 ```
 参数            说明                                  类型     默认值
 disabled       是否禁用                               boolean  false
-max            可输入的最大长度 等于0则不限制          number   0
-showWordLimit  是否显示输入字数统计 max等于0则不显示   boolean  true
+max            可输入的最大长度  0则不限制             number   0
+showWordLimit  是否显示输入字数统计 max=0则不显示      boolean  true
 clearable      是否可清空                             boolean  true
-placeholder    占位符                                string    请输入内容
-value          绑定值                                string     -
+placeholder    占位符                                string    请输入...
+value          绑定值                                string    -
+autofocus     是否自动聚焦                           boolean   true
+autosize      输入框高度 传入对象, 单位为px           object    -
+              如 {minHeight: 50, maxHeight: 100}
+border        默认边框                               string    1px solid #ddd
+borderActive  激活时边框                             string    1px solid #409eff
+radius        圆角大小, 单位为px                     string    5px
+img          输入框图片大小 传入对象, 单位为px        object    {minWidth: 24, maxWidth: 48}
+             如 {minWidth: 24, maxWidth: 48}
 ```
 
-### Events
+## 事件 Events
 ```
 事件名称    说明                 回调参数
-change	   绑定值被改变时触发    内容content
+change	   绑定值被改变时触发    (value: 值, total: 长度)
 ```
 
-### Methods
+## 方法 Methods
 ```
 方法名       说明            回调参数
-clear       清除内容         -
 addEmoji    添加表情或图片   src
+clear       清除内容         -
 getContent  获取内容         -
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## License
+```
+[MIT](http://opensource.org/licenses/MIT).
+Copyright (c) 2020-present, thegithubs
+```
+

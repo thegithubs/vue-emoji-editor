@@ -2,6 +2,9 @@
   <div id="app">
     <emoji-component
 			ref="emoji"
+			:autosize="{minHeight: 100, maxHeight: 200}"
+			:autofocus="false"
+			:max="100"
 			@change="change"
 		/>
 		<button class="button" @click="getcontent">获取内容</button>
@@ -19,8 +22,8 @@
 </template>
 
 <script>
-//import EmojiComponent from './components/EmojiComponent.vue'
-import EmojiComponent from 'vue2-emoji-editor'
+import EmojiComponent from './components/EmojiComponent.vue'
+//import EmojiComponent from 'vue2-emoji-editor'
 
 export default {
   name: 'app',
@@ -63,10 +66,10 @@ export default {
 		getcontent(){
 			this.content = this.$refs.emoji.getContent()
 		},
-		change(content){
+		change(content, total){
 			//内容改变时触发
-			this.getcontent()
-			//console.log(content)
+			//this.getcontent()
+			console.log(content, total)
 		}
 	}
 }
@@ -128,6 +131,11 @@ export default {
 				vertical-align: middle;
 			}
 		}
-	}	
+	}
+	.className {
+		#contenteditable {
+			border: 1px solid red;
+		}
+	}
 }
 </style>
