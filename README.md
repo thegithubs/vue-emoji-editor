@@ -43,7 +43,6 @@ autofocus     是否自动聚焦                           boolean   true
 editorStyle   输入框样式，如height:100px             string    -
 border        默认边框                               string    1px solid #ddd
 borderActive  激活时边框                             string    1px solid #409eff
-radius        圆角大小, 单位为px                     string    5px
 imgStyle      输入框图片样式，如width: 52px          string    -
 ```
 
