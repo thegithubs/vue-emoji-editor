@@ -4,19 +4,18 @@
   		<div class="field">
   			<div
 					id="contenteditable"
-					ref="contenteditable"
-					:class="{wordLimit: max === 0 || !showWordLimit}"
-					:style="`${editorStyle}; border: ${isFocus ? borderActive : border}`"
+					:class="{wordLimit: max === 0 || !showWordLimit, forbid: forbid}"
+					:style="`${editorStyle}; border: ${isFocus ? borderActive : border};`"
 					:contenteditable="canEdit"
 					:placeholder="placeholder"
 					@compositionstart="typing = true"
 					@compositionend="typing = false"
-					@keyup="focus"
+					@keyup="enter"
 					@keydown="keydown"
 					@input="input"
-					@click="focus"
-					@focus="isFocus = true"
-					@blur="isFocus = false"
+					@click="enter"
+					@focus="focus"
+					@blur="blur"
 				></div>
   			<div class="total" v-if="showWordLimit && max !== 0">{{total}} / {{max}}</div>
   			<span class="clear" @click="clear" v-if="!disabled && clearable && content">
@@ -73,7 +72,7 @@ export default {
 		},
 		imgStyle: { //输入框图片样式
 			type: String,
-			default: ''
+			default: 'max-width: 90px;'
 		}
   },
 	data(){
@@ -84,7 +83,8 @@ export default {
 			total: 0,
 			typing: false, //输入状态
 			canEdit: this.disabled ? false : 'plaintext-only',
-			isFocus: false
+			isFocus: false,
+			forbid: false,
 		}
 	},
 	mounted(){
@@ -122,27 +122,46 @@ export default {
 			//获取内容
 			return this.lineFeed(this.content.replace(/<((?!img).+?)>/g, ($1, $2) => `&lt;${$2}&gt;`).trim())
 		},
+		focus(e){
+			this.isFocus = true
+			this.$emit('focus', e)
+		},
+		onFocus(){
+	 		document.querySelector('#contenteditable').focus()
+	 	},
+		blur(e){
+			this.isFocus = false
+			this.$emit('blur', e)
+		},
+		onBlur(){
+	 		document.querySelector('#contenteditable').blur()
+	 	},
 		clear(){
 			//清空内容 重置
+			const $content = document.querySelector('#contenteditable')
 			this.content = ''
 			this.total = 0
 			this.startOffset = 0
-			document.querySelector('#contenteditable').innerHTML = ''
+			$content.innerHTML = ''
+			$content.focus()
+			this.$emit('clear')
 		},
 		keydown(e){
-			//达到最大字数时，除了删除shift方向键，其他不可用
+			//达到最大字数时，除了删除shift方向ctrl键，其他不可用
 			const key = e.keyCode || e.which
 			if (this.max !== 0 && this.total >= this.max) {
-				if (key != 8 && key != 46 && key != 16 && key != 37 && key != 38 && key != 39 && key != 40) {
+				if ((!e.ctrlKey && (key != 67 || key != 86)) && key != 8 && key != 46 && key != 16 && key != 37 && key != 38 && key != 39 && key != 40) {
 					this.canEdit = false
+					this.forbid = true
 					setTimeout(() => {
 						this.canEdit = 'plaintext-only'
-					}, 0)
+						this.forbid = false
+					}, 50)
 				}
 			}
 		},
 		calc(){
-			//计算字数
+			//计算长度
 			const $content = document.querySelector('#contenteditable')
 			let emojiTimes = 0
 			for (let i = 0; i < $content.childNodes.length; i++) {
@@ -167,6 +186,13 @@ export default {
 				this.content = out
 				$content.innerHTML = out
 				this.total = this.max
+				let range = this.range,
+					selection = getSelection()
+				if (!range) range = document.createRange()
+				range.selectNodeContents($content)
+				range.collapse(false)
+				selection.removeAllRanges()
+				selection.addRange(range)
 				return false
 			}
 			return true
@@ -174,14 +200,14 @@ export default {
 		input(){
 			//定时器确保compositionend已经执行
 			setTimeout(() => {
-				if (this.typing || !this.calc() || (this.max !== 0 && this.total >= this.max)) return
+				if (!this.canEdit || this.typing || !this.calc() || (this.max !== 0 && this.total >= this.max)) return
 				const $content = document.querySelector('#contenteditable'),
 					child = $content.childNodes
 				$content.scrollTop = $content.offsetHeight
 				this.content = [...child].map(i => i.nodeName.toLowerCase() == 'img' ? i.outerHTML : i.nodeValue).join('')
 			}, 0)
 		},
-		focus(e){
+		enter(e){
 			//点击或聚焦
 			if (e.target.id != 'contenteditable') return
 			const selection = getSelection()
@@ -206,6 +232,7 @@ export default {
 				range.selectNodeContents($content)
 				$content.focus()
 			}
+			selection.deleteFromDocument()
 			const	textNode = range.startContainer,
 				isBr = textNode.nodeName.toLowerCase() == 'br',
 				child = $content.childNodes
@@ -226,7 +253,7 @@ export default {
 				range.insertNode(emoji)
 				range.setStart(textNode, this.startOffset)
 			}
-			this.total++
+			this.calc()
 			this.content = [...child].map(i => i.nodeName.toLowerCase() == 'img' ? i.outerHTML : i.nodeValue).join('')
 			range.collapse(false)
 			selection.removeAllRanges()
@@ -258,11 +285,15 @@ export default {
 					transition: all ease .4s;
 					border: 1px solid #ddd;
 					border-radius: 5px;
+					overflow-x: hidden;
 					&:focus {
 						border: 1px solid #409eff;
 					}
 					&[contenteditable = "false"] {
 						cursor: not-allowed;
+						&.forbid {
+							cursor: text;
+						}
 					}
 					&:empty::before {
 						color: #ddd;

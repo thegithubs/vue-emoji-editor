@@ -48,16 +48,21 @@ imgStyle      输入框图片样式，如width: 52px          string    -
 
 ## 事件 Events
 ```
-事件名称    说明                 回调参数
-change	   绑定值被改变时触发    (value: 值, total: 长度)
+事件名称    说明                  回调参数
+change	   绑定值被改变时触发     (value: 值, total: 长度)
+focus	     输入框获得焦点时触发   event
+blur	     输入框失去焦点时触发   event
+clear	     点击清除按钮时触发     -
 ```
 
 ## 方法 Methods
 ```
-方法名       说明            回调参数
-addEmoji    添加表情或图片   src
-clear       清除内容         -
-getContent  获取内容         -
+方法名       说明                回调参数
+addEmoji    添加表情或图片       src
+clear       清除内容             -
+getContent  获取内容             -
+onFocus     使输入框获取焦点     -
+onBlur      使输入框失去焦点     -
 ```
 
 ## License
