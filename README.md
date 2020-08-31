@@ -32,26 +32,26 @@ import EmojiComponent from 'vue2-emoji-editor'
 
 ## 属性 Attributes
 ```
-参数            说明                                  类型     默认值
-disabled       是否禁用                               boolean  false
-max            可输入的最大长度  0则不限制             number   0
-showWordLimit  是否显示输入字数统计 max=0则不显示      boolean  true
-clearable      是否可清空                             boolean  true
-placeholder    占位符                                string    请输入...
-value          绑定值                                string    -
-autofocus     是否自动聚焦                           boolean   true
-editorStyle   输入框样式，如height:100px             string    -
-border        默认边框                               string    1px solid #ddd
-borderActive  激活时边框                             string    1px solid #409eff
-imgStyle      输入框图片样式，如width: 52px          string    -
+参数            说明                                类型     默认值
+disabled       是否禁用                             boolean  false
+max            可输入的最大长度  0则不限制           number   0
+showWordLimit  是否显示输入字数统计 max=0则不显示    boolean  true
+clearable      是否可清空                           boolean  true
+placeholder    占位符                               string   请输入...
+value          绑定值                               string   -
+autofocus     是否自动聚焦                          boolean  true
+editorStyle   输入框样式，如height:100px            string   -
+border        默认边框                             string   1px solid #ddd
+borderActive  激活时边框                           string   1px solid #409eff
+imgStyle      输入框内图片样式，如width: 52px      string    -
 ```
 
 ## 事件 Events
 ```
 事件名称    说明                  回调参数
-change	   绑定值被改变时触发     (value: 值, total: 长度)
-focus	     输入框获得焦点时触发   event
-blur	     输入框失去焦点时触发   event
+change	   绑定值被改变时触发     (value, length)
+focus	     输入框获得焦点时触发   (event: Event)
+blur	     输入框失去焦点时触发   (event: Event)
 clear	     点击清除按钮时触发     -
 ```
 
@@ -61,8 +61,8 @@ clear	     点击清除按钮时触发     -
 addEmoji    添加表情或图片       src
 clear       清除内容             -
 getContent  获取内容             -
-onFocus     使输入框获取焦点     -
-onBlur      使输入框失去焦点     -
+focus       使输入框获取焦点      -
+blur        使输入框失去焦点      -
 ```
 
 ## License

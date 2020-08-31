@@ -95,6 +95,7 @@ export default {
 			this.$emit('change', this.getContent(), this.total)
 		}
 	},
+	inheritAttrs: false,
 	methods: {
 		lineFeed(h){
 			//输出换行符，去掉js事件 如onclick等
@@ -107,7 +108,7 @@ export default {
 				selection = getSelection()
 			this.content = this.value
 			$content.innerHTML = this.content
-			if (this.autofocus) $content.focus()
+			if (this.autofocus) this.focus()
 			if (!this.disabled) {
 				if (!this.autofocus) return
 				range = selection.getRangeAt(0)
@@ -123,27 +124,22 @@ export default {
 			return this.lineFeed(this.content.replace(/<((?!img).+?)>/g, ($1, $2) => `&lt;${$2}&gt;`).trim())
 		},
 		focus(e){
+			if (this.isFocus) return
 			this.isFocus = true
-			this.$emit('focus', e)
-		},
-		onFocus(){
 	 		document.querySelector('#contenteditable').focus()
-	 	},
+			if (e && e.sourceCapabilities) this.$emit('focus', e)
+		},
 		blur(e){
 			this.isFocus = false
-			this.$emit('blur', e)
+			if (e && !e.relatedTarget) this.$emit('blur', e)
 		},
-		onBlur(){
-	 		document.querySelector('#contenteditable').blur()
-	 	},
 		clear(){
 			//清空内容 重置
-			const $content = document.querySelector('#contenteditable')
 			this.content = ''
 			this.total = 0
 			this.startOffset = 0
-			$content.innerHTML = ''
-			$content.focus()
+			document.querySelector('#contenteditable').innerHTML = ''
+			this.focus()
 			this.$emit('clear')
 		},
 		keydown(e){
