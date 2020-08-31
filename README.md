@@ -1,7 +1,6 @@
 # vue-emoji-editor
 
 ![Image text](https://img-cdn-aliyun.dcloud.net.cn/stream/plugin_screens/c7d536b0-e747-11ea-b015-5794bd84f21f_0.png?v=1598418218)
-[点击查看效果图Effect Picture](https://img-cdn-aliyun.dcloud.net.cn/stream/plugin_screens/c7d536b0-e747-11ea-b015-5794bd84f21f_0.png?v=1598418218)
 
 ## 说明 Introduction
 ```
@@ -113,8 +112,7 @@ import EmojiComponent from 'vue2-emoji-editor'
 </table>
 
 ## License
-```
+###
 [MIT](http://opensource.org/licenses/MIT/)
 Copyright (c) 2020-present, thegithubs
-```
 
