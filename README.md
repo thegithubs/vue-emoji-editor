@@ -31,44 +31,86 @@ import EmojiComponent from 'vue2-emoji-editor'
 ```
 
 ## 属性 Attributes
-```
-<table>
+###
+<table style="width: 100%;">
 	<tr>
 		<th>参数</th><th>说明</th><th>类型</th><th>默认值</th>
 	</tr>
 	<tr>
 		<td>disabled</td><td>是否禁用</td><td>boolean</td><td>false</td>
+	</tr>
+	<tr>
 		<td>max</td><td>可输入的最大长度  0则不限制</td><td>number</td><td>0</td>
+	</tr>
+	<tr>
 		<td>clearable</td><td>是否可清空</td><td>boolean</td><td>true</td>
+	</tr>
+	<tr>
 		<td>placeholder</td><td>占位符</td><td>string</td><td>请输入...</td>
+	</tr>
+	<tr>
 		<td>value</td><td>绑定值</td><td>string</td><td>-</td>
+	</tr>
+	<tr>
 		<td>autofocus</td><td>是否自动聚焦</td><td>boolean</td><td>false</td>
+	</tr>
+	<tr>
 		<td>editorStyle</td><td>输入框样式</td><td>string</td><td>-</td>
+	</tr>
+	<tr>
 		<td>border</td><td>默认边框</td><td>string</td><td>1px solid #ddd</td>
+	</tr>
+	<tr>
 		<td>borderActive</td><td>激活时边框</td><td>string</td><td>1px solid #409eff</td>
+	</tr>
+	<tr>
 		<td>imgStyle</td><td>输入框内图片样式，如width: 52px</td><td>string</td><td>-</td>
 	</tr>
 </table>
-```
+
 
 ## 事件 Events
-```
-事件名称    说明                  回调参数
-change	   绑定值被改变时触发     (value, length)
-focus	     输入框获得焦点时触发   (event: Event)
-blur	     输入框失去焦点时触发   (event: Event)
-clear	     点击清除按钮时触发     -
-```
+###
+<table style="width: 100%;">
+	<tr>
+		<th>事件名称</th><th>说明</th><th>回调参数</th>
+	</tr>
+	<tr>
+		<td>change</td><td>绑定值被改变时触发</td><td>(value, length)</td>
+	</tr>
+	<tr>
+		<td>focus</td><td>输入框获得焦点时触发</td><td>(event: Event)</td>
+	</tr>
+	<tr>
+		<td>blur</td><td>输入框失去焦点时触发</td><td>(event: Event)</td>
+	</tr>
+	<tr>
+		<td>clear</td><td>点击清除按钮时触发</td><td>-</td>
+	</tr>
+</table>
 
 ## 方法 Methods
-```
-方法名       说明                回调参数
-addEmoji    添加表情或图片       src
-clear       清除内容             -
-getContent  获取内容             -
-focus       使输入框获取焦点      -
-blur        使输入框失去焦点      -
-```
+###
+<table style="width: 100%;">
+	<tr>
+		<th>方法名</th><th>说明</th><th>回调参数</th>
+	</tr>
+	<tr>
+		<td>addEmoji</td><td>添加表情或图片</td><td>(value, length)</td>
+	</tr>
+	<tr>
+		<td>clear</td><td>清除内容</td><td>-</td>
+	</tr>
+	<tr>
+		<td>getContent</td><td>获取内容</td><td>-</td>
+	</tr>
+	<tr>
+		<td>focus</td><td>使输入框获取焦点</td><td>-</td>
+	</tr>
+	<tr>
+		<td>blur</td><td>使输入框失去焦点</td><td>-</td>
+	</tr>
+</table>
 
 ## License
 ```
