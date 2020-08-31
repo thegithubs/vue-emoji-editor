@@ -98,8 +98,8 @@ export default {
 	inheritAttrs: false,
 	methods: {
 		lineFeed(h){
-			//输出换行符，去掉js事件 如onclick等
-			return h.replace(/[\r\n]/g, '<br>').replace(/on.+=".*"/i, '')
+			//输出换行符，图片<img 去掉js事件 如onclick等
+			return h.indexOf('<img') > -1 ? h.replace(/[\r\n]/g, '<br>').replace(/on.+?=".*?"/i, '') : h
 		},
 		init(){
 			//初始化
@@ -120,7 +120,7 @@ export default {
 			this.calc()
 		},
 		getContent(){
-			//获取内容
+			//获取内容 非img转义< &lt; > &gt;
 			return this.lineFeed(this.content.replace(/<((?!img).+?)>/g, ($1, $2) => `&lt;${$2}&gt;`).trim())
 		},
 		focus(e){
