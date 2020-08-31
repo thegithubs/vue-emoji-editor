@@ -32,18 +32,23 @@ import EmojiComponent from 'vue2-emoji-editor'
 
 ## 属性 Attributes
 ```
-| 参数 | 说明 | 类型 | 默认值 |
-| ---- | ----- | ------ | ------ |
-| disabled | 是否禁用 | boolean | false |
-| max | 可输入的最大长度  0则不限制 | number |  0 |
-| clearable | 是否可清空 | boolean | true |
-| placeholder | 占位符 | string | 请输入... |
-| value |  绑定值 | string | - |
-| autofocus | 是否自动聚焦 | boolean | true |
-| editorStyle | 输入框样式，如height:100px | string | - |
-| border | 默认边框 | string | 1px solid #ddd |
-| borderActive | 激活时边框 | string | 1px solid #409eff |
-| imgStyle | 输入框内图片样式，如width: 52px | string | - |
+<table>
+	<tr>
+		<th>参数</th><th>说明</th><th>类型</th><th>默认值</th>
+	</tr>
+	<tr>
+		<td>disabled</td><td>是否禁用</td><td>boolean</td><td>false</td>
+		<td>max</td><td>可输入的最大长度  0则不限制</td><td>number</td><td>0</td>
+		<td>clearable</td><td>是否可清空</td><td>boolean</td><td>true</td>
+		<td>placeholder</td><td>占位符</td><td>string</td><td>请输入...</td>
+		<td>value</td><td>绑定值</td><td>string</td><td>-</td>
+		<td>autofocus</td><td>是否自动聚焦</td><td>boolean</td><td>false</td>
+		<td>editorStyle</td><td>输入框样式</td><td>string</td><td>-</td>
+		<td>border</td><td>默认边框</td><td>string</td><td>1px solid #ddd</td>
+		<td>borderActive</td><td>激活时边框</td><td>string</td><td>1px solid #409eff</td>
+		<td>imgStyle</td><td>输入框内图片样式，如width: 52px</td><td>string</td><td>-</td>
+	</tr>
+</table>
 ```
 
 ## 事件 Events
