@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <emoji-component
-			v-model="initText"
+			v-model="content"
 			ref="emoji"
 			editorStyle="min-height: 100px; max-height: 200px;"
 			:max="1000"
@@ -32,7 +32,6 @@ export default {
   },
 	data(){
 		return {
-			initText: '',
 			content: '',
 			showEmoji: false,
 			emojis: [
@@ -65,7 +64,7 @@ export default {
 			this.$refs.emoji.addEmoji(src)
 		},
 		getcontent(){
-			console.log(this.initText)
+			console.log(this.content)
 			//this.content = this.$refs.emoji.getContent()
 		},
 		change(content, total){
