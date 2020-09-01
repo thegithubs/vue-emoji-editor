@@ -99,11 +99,11 @@ export default {
 			this.$emit('change', this.getContent(), this.total)
 		}
 	},
-	inheritAttrs: false,
 	methods: {
-		lineFeed(h){
-			//输出换行符，图片<img 去掉js事件 如onclick等
-			return h.indexOf('<img') > -1 ? h.replace(/[\r\n]/g, '<br>').replace(/on.+?=".*?"/i, '') : h
+		lineFeed(c){
+			//输出换行符，图片<img 去掉js事件 如onclick
+			const h = c.replace(/[\r\n]/g, '<br>')
+			return h.indexOf('<img') > -1 ? h.replace(/on.+?=".*?"/i, '') : h
 		},
 		init(){
 			//初始化

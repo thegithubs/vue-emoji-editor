@@ -16,7 +16,7 @@
 		</div>
 		<div class="content">
 			<p>输出内容：</p>
-			<div class="out">{{content}}</div>
+			<div class="out" v-html="content"></div>
 		</div>
   </div>
 </template>
@@ -65,11 +65,9 @@ export default {
 		},
 		getcontent(){
 			console.log(this.content)
-			//this.content = this.$refs.emoji.getContent()
 		},
 		change(content, total){
 			//内容改变时触发
-			//this.getcontent()
 			//console.log(content, total)
 		}
 	}
@@ -80,7 +78,6 @@ export default {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin: 60px auto 0;
