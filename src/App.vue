@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <emoji-component
+			v-model="initText"
 			ref="emoji"
 			editorStyle="min-height: 100px; max-height: 200px;"
-			:max="100"
+			:max="1000"
 			@change="change"
 		/>
 		<button class="button" @click="getcontent">获取内容</button>
@@ -15,7 +16,7 @@
 		</div>
 		<div class="content">
 			<p>输出内容：</p>
-			<div class="out" v-html="content"></div>
+			<div class="out">{{content}}</div>
 		</div>
   </div>
 </template>
@@ -31,6 +32,7 @@ export default {
   },
 	data(){
 		return {
+			initText: '',
 			content: '',
 			showEmoji: false,
 			emojis: [
@@ -63,12 +65,13 @@ export default {
 			this.$refs.emoji.addEmoji(src)
 		},
 		getcontent(){
-			this.content = this.$refs.emoji.getContent()
+			console.log(this.initText)
+			//this.content = this.$refs.emoji.getContent()
 		},
 		change(content, total){
 			//内容改变时触发
 			//this.getcontent()
-			console.log(content, total)
+			//console.log(content, total)
 		}
 	}
 }
