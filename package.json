@@ -1,7 +1,7 @@
 {
-  "name": "default",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue2-emoji-editor",
+  "version": "0.1.11",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -10,11 +10,29 @@
     "core-js": "^2.6.5",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.0",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue2-emoji-editor": "^0.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "description": "![Image text](https://github.com/thegithubs/vue-emoji-editor/blob/master/public/intro.png?raw=true)",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegithubs/vue-emoji-editor.git"
+  },
+  "keywords": [
+    "vue",
+    "emoji",
+    "editor"
+  ],
+  "author": "thegithubs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegithubs/vue-emoji-editor/issues"
+  },
+  "homepage": "https://github.com/thegithubs/vue-emoji-editor#readme"
 }

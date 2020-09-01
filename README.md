@@ -36,6 +36,9 @@ import EmojiComponent from 'vue2-emoji-editor'
 		<th>参数</th><th>说明</th><th>类型</th><th>默认值</th>
 	</tr>
 	<tr>
+		<td>v-model / value</td><td>绑定值</td><td>string</td><td>-</td>
+	</tr>
+	<tr>
 		<td>disabled</td><td>是否禁用</td><td>boolean</td><td>false</td>
 	</tr>
 	<tr>
@@ -46,9 +49,6 @@ import EmojiComponent from 'vue2-emoji-editor'
 	</tr>
 	<tr>
 		<td>placeholder</td><td>占位符</td><td>string</td><td>请输入...</td>
-	</tr>
-	<tr>
-		<td>value</td><td>绑定值</td><td>string</td><td>-</td>
 	</tr>
 	<tr>
 		<td>autofocus</td><td>是否自动聚焦</td><td>boolean</td><td>false</td>

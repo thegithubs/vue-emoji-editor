@@ -29,6 +29,10 @@
 <script>
 export default {
   name: 'EmojiComponent',
+	model: {
+		prop: 'value',
+		event: 'change'
+	},
   props: {
 		disabled: { //是否禁用
 			type: Boolean,
@@ -122,6 +126,9 @@ export default {
 		getContent(){
 			//获取内容 非img转义< &lt; > &gt;
 			return this.lineFeed(this.content.replace(/<((?!img).+?)>/g, ($1, $2) => `&lt;${$2}&gt;`).trim())
+		},
+		modelValue(){
+			this.content += ''
 		},
 		focus(e){
 			if (this.isFocus) return
@@ -230,7 +237,6 @@ export default {
 			}
 			selection.deleteFromDocument()
 			const	textNode = range.startContainer,
-				isBr = textNode.nodeName.toLowerCase() == 'br',
 				child = $content.childNodes
 			if (selection.anchorNode.nodeName != '#text') {
 				if (child.length > 0) {
