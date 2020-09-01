@@ -247,7 +247,7 @@ export default {
 				}
 			} else {
 				range.insertNode(emoji)
-				range.setStart(textNode, this.startOffset)
+				range.setStart(textNode, this.startOffset > textNode.length ? 0 : this.startOffset)
 			}
 			this.calc()
 			this.content = [...child].map(i => i.nodeName.toLowerCase() == 'img' ? i.outerHTML : i.nodeValue).join('')
