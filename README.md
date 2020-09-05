@@ -10,7 +10,7 @@ emoji列表和图片上传逻辑请自行实现，本组件只处理传进来的
 This component is based on HTML5 contenteditable and vue, 
 which can insert emoji, pictures, etc
 Please implement the emoji list and picture upload logic by yourself
-Use this.$refs. Emojis. AddEmoji (SRC) to display in the component 
+Use this.$refs.emoji.addEmoji(src) to display in the component 
 after adding emoji or uploading
 ```
 
@@ -48,13 +48,10 @@ import EmojiComponent from 'vue2-emoji-editor'
 		<td>clearable</td><td>是否可清空</td><td>boolean</td><td>true</td>
 	</tr>
 	<tr>
-		<td>placeholder</td><td>占位符</td><td>string</td><td>请输入...</td>
+		<td>placeholder</td><td>占位提示文字</td><td>string</td><td>请输入...</td>
 	</tr>
 	<tr>
 		<td>autofocus</td><td>是否自动聚焦</td><td>boolean</td><td>false</td>
-	</tr>
-	<tr>
-		<td>editorStyle</td><td>输入框样式</td><td>string</td><td>-</td>
 	</tr>
 	<tr>
 		<td>border</td><td>默认边框</td><td>string</td><td>1px solid #ddd</td>
@@ -63,7 +60,13 @@ import EmojiComponent from 'vue2-emoji-editor'
 		<td>borderActive</td><td>激活时边框</td><td>string</td><td>1px solid #409eff</td>
 	</tr>
 	<tr>
+		<td>editorStyle</td><td>输入框样式，如height: 90px</td><td>string</td><td>-</td>
+	</tr>
+	<tr>
 		<td>imgStyle</td><td>输入框内图片样式，如width: 52px</td><td>string</td><td>-</td>
+	</tr>
+	<tr>
+		<td>name</td><td>原生属性</td><td>string</td><td>-</td>
 	</tr>
 </table>
 
@@ -98,9 +101,6 @@ import EmojiComponent from 'vue2-emoji-editor'
 		<td>addEmoji</td><td>添加表情或图片</td><td>(value, length)</td>
 	</tr>
 	<tr>
-		<td>clear</td><td>清除内容</td><td>-</td>
-	</tr>
-	<tr>
 		<td>getContent</td><td>获取内容</td><td>-</td>
 	</tr>
 	<tr>
@@ -108,6 +108,9 @@ import EmojiComponent from 'vue2-emoji-editor'
 	</tr>
 	<tr>
 		<td>blur</td><td>使输入框失去焦点</td><td>-</td>
+	</tr>
+	<tr>
+		<td>clear</td><td>清除内容</td><td>-</td>
 	</tr>
 </table>
 

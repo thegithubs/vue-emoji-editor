@@ -8,6 +8,7 @@
 					:style="`${editorStyle}; border: ${isFocus ? borderActive : border};`"
 					:contenteditable="canEdit"
 					:placeholder="placeholder"
+					:name="name"
 					@compositionstart="typing = true"
 					@compositionend="typing = false"
 					@keyup="enter"
@@ -62,10 +63,6 @@ export default {
     	type: Boolean,
     	default: true
     },
-		editorStyle: { //输入框样式
-			type: String,
-			default: ''
-		},
 		border: { //默认边框
 			type: String,
 			default: '1px solid #ddd'
@@ -74,9 +71,17 @@ export default {
 			type: String,
 			default: '1px solid #409eff'
 		},
+		editorStyle: { //输入框样式
+			type: String,
+			default: ''
+		},
 		imgStyle: { //输入框图片样式
 			type: String,
 			default: 'max-width: 90px;'
+		},
+		name: {
+			type: String,
+			default: ''
 		}
   },
 	data(){
